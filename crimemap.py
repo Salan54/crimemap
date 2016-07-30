@@ -21,23 +21,6 @@ def home(error_message=None):
     crimes = json.dumps(crimes)
     return render_template("home.html", crimes=crimes, categories=categories, error_message=error_message)
 
-@app.route("/add", methods=["POST"])
-def add():
-    try:
-        data = request.form.get("userinput")
-        DB.add_input(data)
-    except Exception as e:
-        print e
-    return home()
-
-@app.route("/clear")
-def clear():
-    try:
-        DB.clear_all()
-    except Exception as e:
-        print e
-    return home()
-
 @app.route("/submitcrime", methods=['POST'])
 def submitcrime():
     category = request.form.get("category")
